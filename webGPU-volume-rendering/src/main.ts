@@ -6,6 +6,10 @@ async function initWebGPU() {
   const canvas = document.getElementById("webgpu-canvas") as HTMLCanvasElement;
   const adapter = await navigator.gpu.requestAdapter();
   const device = await adapter?.requestDevice();
+  if(device === undefined)
+  {
+    return;
+  }
 
   const context = canvas.getContext("webgpu") as GPUCanvasContext;
   const format = navigator.gpu.getPreferredCanvasFormat();
